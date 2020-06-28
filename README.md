@@ -106,13 +106,13 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | How can we represent the system in an **architecture diagram**, which gives information both about the Docker containers, the communication protocols and the commands? |
 | | *Insert your diagram here...* |
 |Question | Who is going to **send UDP datagrams** and **when**? |
-| | *Enter your response here...* |
+| | Chaque seconde, tous les musiciens envoient un datagramme UDP. |
 |Question | Who is going to **listen for UDP datagrams** and what should happen when a datagram is received? |
-| | *Enter your response here...* |
+| | *L'auditeur écoute sur le port 2205. Lors de la réception du datagramme, il renvoie un payload JSON contenant la liste des musiciens acfifs.* |
 |Question | What **payload** should we put in the UDP datagrams? |
-| | *Enter your response here...* |
+| | **l'UUID du musicien, le nom de l'instrument qu'il est entrain de jouer. On peut aussi passer le timestamp actuel mais cela n'est pas nécessaire au bon fonctionneent de l'application. * |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | *Enter your response here...* |
+| | *L'auditeur a un objet qui possède un certains nombres de clés. Chaque clé correspond à un musicien actif (référencé par son UUID). Un musicien actif est représenté par un ensemble de propriétés: son UUID, son instrument, l'heure du premier paquet, et enfin l'heure de la dernière synchronisation. A la réception d'un datagramme, il va mettre à jour le musicien correspondant s'il trouve son UUID dans les clés du tableau. S'il ne le trouve pas, il l'ajoute. Il faut aussi s'assurer que les musiciens plus actif depuis 5 secondes minumum soit supprimer.* |
 
 
 ## Task 2: implement a "musician" Node.js application
@@ -120,21 +120,21 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | In a JavaScript program, if we have an object, how can we **serialize it in JSON**? |
-| | *Enter your response here...*  |
+| | *Comme un objet javascript est un objet JSON, on peut utiliser la fonction JSON.stringify() qui va transformer notre chaîne JSON en texte.*  |
 |Question | What is **npm**?  |
-| | *Enter your response here...*  |
+| | *npm veut dire Node Package Manager. Il s'agit du gestionnaire de package de NODE. Il permet d'installer et de gérer différentes versions de package javascript.*  |
 |Question | What is the `npm install` command and what is the purpose of the `--save` flag?  |
-| | *Enter your response here...*  |
+| | *npm install va installer le package demandé. Le flag --save permet de sauvegarder la dépendance dans le fichier package.json. Dans les dernières versions, c'est le comportement par défaut de NPM.  |
 |Question | How can we use the `https://www.npmjs.com/` web site?  |
-| | *Enter your response here...*  |
+| | *Le site permet de rechercher des packages javascript. On peut ainsi chercher un module qui nous intéresserait et obtenir sa description, sa version, la date de sa dernière mise à jour, son auteur aisni que son repo github et la liste des ifférents collaborateurs.*  |
 |Question | In JavaScript, how can we **generate a UUID** compliant with RFC4122? |
-| | *Enter your response here...*  |
+| | *Il existe un module (https://www.npmjs.com/package/uuid) qui permet de générer des UUID compatible avec la norme RFC4122. On peut facilement l'installer avec NPM.*  |
 |Question | In Node.js, how can we execute a function on a **periodic** basis? |
-| | *Enter your response here...*  |
+| | *En utilisant la fonction setInterval() disponible dans le module Timer fourni par défaut avec NodeJS.*  |
 |Question | In Node.js, how can we **emit UDP datagrams**? |
-| | *Enter your response here...*  |
+| | *En utilisant le module dgram fourni avec NodeJS*  |
 |Question | In Node.js, how can we **access the command line arguments**? |
-| | *Enter your response here...*  |
+| | *Les arguments se trouvent dans la propriété argv de l'objet process. L'objet process, est un objet global qui offre des informations et contrôle le processus NodeJS courant.*  |
 
 
 ## Task 3: package the "musician" app in a Docker image
