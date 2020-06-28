@@ -55,7 +55,7 @@ setInterval(function() {
     let musicianToSend = myMusician;
     musicianToSend.sendTime = moment().format();
     const message = Buffer.from(JSON.stringify(musicianToSend));
-    const UDP_PORT = 2222;
+    const UDP_PORT = 2150;
     const UDP_MULTICAST_ADDRESS = "230.1.1.1";
 
     // Envoie du datagramme UDP 
