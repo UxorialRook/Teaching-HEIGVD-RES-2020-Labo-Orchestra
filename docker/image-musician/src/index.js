@@ -1,4 +1,3 @@
-const express = require("express");
 const dgram = require('dgram');
 const { v4 : uuidv4 } = require('uuid');
 
@@ -6,13 +5,6 @@ const { v4 : uuidv4 } = require('uuid');
  * MomentJS plus simple pour gérer les dates
  */
 let moment = require("moment");
-
-const port = 3000;
-const app = express();
-
-app.get('/',function(req,res) {
-    res.send(generateResponse());
-})
 
 
 /**
