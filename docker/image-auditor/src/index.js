@@ -11,21 +11,26 @@ const socketUDP = dgram.createSocket('udp4');
 
 let orchestra = new Map();
 
+/**
+ * A chaque réception d'un message provenant d'un musicien
+ * update ou créé un nouveau noeud dans l'orchestre
+ */
 socketUDP.on('message', function (message, remote) {   
-    const req = JSON.parse(msg.toString());
+    const req = JSON.parse(message.toString());
     orchestra.set(req.uuid, {
         instrument: req.instrument,
         last: moment().format(),
-        activeSince: req.activeSince
+        activeSince: req.activeSince,
+        sendTime: req.sendTime
     });
 
-    orchestra.forEach(musician => {
-        if(moment(Date.now()).diff(musician.activeSince, 'seconds') > 5) {
-            orchestra.delete(musician);
-        }
-    })
+    // On check si un musicien n'a pas été actif depuis plus de 5 secondes..
+    deleteInactiveMusician();
 });
 
+/**
+ * Binding pour la réception des datagrams UDP
+ */
 socketUDP.bind(PORT_UDP, HOST_UDP, socket => {
     var address = socketUDP.address();
     console.log('Client UDP écoute sur ' + address.address + ":" + address.port);
@@ -39,7 +44,8 @@ server.on("connection", socket => {
         message.push({
             uuid: musician.uuid,
             instrument: musician.instrument,
-            activeSince: musician.activeSince
+            activeSince: musician.activeSince,
+            sendTime: musician.sendTime
         });
     });
 
@@ -47,4 +53,21 @@ server.on("connection", socket => {
     socket.end();
 });
 
+/**
+ * Polling chaque 1 seconde pour la suppression des musiciens inactfs
+ * depuis plus de 5 secondes.
+ */
+setInterval(function() {
+    deleteInactiveMusician();
+},1000)
 server.listen(PORT_TCP);
+
+function deleteInactiveMusician() {
+    for(let [uuid,musician ] of orchestra) {
+        let diff = moment().diff(musician.sendTime,"second");
+        if(diff > 5) {
+            orchestra.delete(uuid);
+            console.log("Suppression du musicien: " + uuid + " pour inactivité");
+        }
+    }
+}
