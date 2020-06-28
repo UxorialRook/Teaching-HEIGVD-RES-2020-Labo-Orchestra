@@ -168,7 +168,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | When and how do we **get rid of inactive players**?  |
 | | *Chaque 1 seconde, on regarde tous les musiciens qui n'ont pas été actifs depuis plus de 5 secondes. On connait cette information en observant l'heure de la dernière mise à jour (requête) effectuée par un musicien. Nous avons choisi de faire cette opération chaque 1 seconde pour garantir une suppression plus "rapide" de nos musiciens inactifs.* |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
-| | *Enter your response here...* |
+| | *Il y'a plusieurs manière de le faire. Nous avons choisi de faire appel au module net fourni avec NodeJS. Il permet la création d'un serveur TCP en quelques lignes grâce à la commande net.createServer().* |
 
 
 ## Task 5: package the "auditor" app in a Docker image
