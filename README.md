@@ -112,7 +112,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 |Question | What **payload** should we put in the UDP datagrams? |
 | | **l'UUID du musicien, le nom de l'instrument qu'il est entrain de jouer. On peut aussi passer le timestamp actuel mais cela n'est pas nécessaire au bon fonctionneent de l'application. * |
 |Question | What **data structures** do we need in the UDP sender and receiver? When will we update these data structures? When will we query these data structures? |
-| | *L'auditeur a un objet qui possède un certains nombres de clés. Chaque clé correspond à un musicien actif (référencé par son UUID). Un musicien actif est représenté par un ensemble de propriétés: son UUID, son instrument, l'heure du premier paquet, et enfin l'heure de la dernière synchronisation. A la réception d'un datagramme, il va mettre à jour le musicien correspondant s'il trouve son UUID dans les clés du tableau. S'il ne le trouve pas, il l'ajoute. Il faut aussi s'assurer que les musiciens plus actif depuis 5 secondes minumum soit supprimer.* |
+| | *L'auditeur a un Map qui possède un certains nombres de clés. Chaque clé correspond à un musicien actif (référencé par son UUID). Un musicien actif est représenté par un ensemble de propriétés: son UUID, son instrument, l'heure du premier paquet, et enfin l'heure de la dernière synchronisation. A la réception d'un datagramme, il va mettre à jour le musicien correspondant s'il trouve son UUID dans les clés du Map. S'il ne le trouve pas, il l'ajoute. Il faut aussi s'assurer que les musiciens plus actif depuis 5 secondes minumum soit supprimer.* |
 
 
 ## Task 2: implement a "musician" Node.js application
