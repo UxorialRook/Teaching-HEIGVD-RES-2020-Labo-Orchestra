@@ -160,13 +160,13 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | ---  |
 |Question | With Node.js, how can we listen for UDP datagrams in a multicast group? |
-| | *Enter your response here...*  |
+| | *Une fois le serveur UDP (v.4) lancé, on peut utiliser la fonction bind pour qu'une fonction de callback soit appelée lorsque un datagram est reçu sur le port précisé.*  |
 |Question | How can we use the `Map` built-in object introduced in ECMAScript 6 to implement a **dictionary**?  |
-| | *Enter your response here...* |
+| | *On peut utiliser l'objet Map pour stocker les différents musiciens actifs de l'orchestre. La clé étant l'UUID de chaque musicien et les données un objet représentant les différentes informations du musicien (instrument, timestamp].* |
 |Question | How can we use the `Moment.js` npm module to help us with **date manipulations** and formatting?  |
-| | *Enter your response here...* |
+| | *On créé un objet moment au début de notre script en faisant un require() sur le module. Ensuite, on peut utiliser les différentes fonctions built-in pour générer, comparer différents dates/heures/timestamp..* |
 |Question | When and how do we **get rid of inactive players**?  |
-| | *Enter your response here...* |
+| | *Chaque 2 secondes, on regarde tous les musiciens qui n'ont pas été actifs depuis plus de 5 secondes. On connait cette information en observant l'heure de la dernière mise à jour (requête) effectuée par un musicien. Nous avons choisi de faire cette opération chaque 2 secondes pour garantir une suppression plus "rapide" de nos musiciens inactifs.* |
 |Question | How do I implement a **simple TCP server** in Node.js?  |
 | | *Enter your response here...* |
 
@@ -176,7 +176,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we validate that the whole system works, once we have built our Docker image? |
-| | *Le scripte validate.sh nous permet de valider le comportement de l'application.* |
+| | *Le script validate.sh nous permet de valider le comportement de l'application.* |
 
 
 ## Constraints
