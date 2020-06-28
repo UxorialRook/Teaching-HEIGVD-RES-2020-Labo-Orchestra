@@ -142,17 +142,17 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we **define and build our own Docker image**?|
-| | *Enter your response here...*  |
+| | *On définit une image docker à l'aide d'un fichier Dockerfile. Ce fichier va être utilisé par la commande docker build \<name\>\<context\>* utilisé pour construire l'image docker depuis un fichier de configuration. |
 |Question | How can we use the `ENTRYPOINT` statement in our Dockerfile?  |
-| | *Enter your response here...*  |
+| | *L'ENTRYPOINT est le point d'entrée de notre docker. Il s'agit de l'application qui va être exécuté au démarrage du container. Dans notre cas, il s'agit de notre application nodejs. On lui passe donc en premier paramètre le nom de l'exécutable (node) et en second les arguments, dans ce cas, le chemin vers notre script*  |
 |Question | After building our Docker image, how do we use it to **run containers**?  |
-| | *Enter your response here...*  |
+| | *A l'aide de la commande docker run \<image\>. On peut lui préciser un certain nombre de paramètres si on  souhaite run l'image en interactive mode (-it) en dissocié (-d).*  |
 |Question | How do we get the list of all **running containers**?  |
-| | *Enter your response here...*  |
+| | *Avec la commande docker ps*  |
 |Question | How do we **stop/kill** one running container?  |
-| | *Enter your response here...*  |
+| | *Avec la commande stop/kill \<container_name\> ou \<container_id\>*  |
 |Question | How can we check that our running containers are effectively sending UDP datagrams?  |
-| | *Enter your response here...*  |
+| | On peut déjà vérifier avec les logs (si on log l'envoie) que notre fonction est bien exécutée. (docker log \<container_name\>) Pour s'assurer que les datagrams UDP sont bien envoyés, on peut exécuter la commande tcpdump avec comme argument l'IP et le port choisi dans l'application. |
 
 
 ## Task 4: implement an "auditor" Node.js application
@@ -176,7 +176,7 @@ When you connect to the TCP interface of the **Auditor**, you should receive an 
 | #  | Topic |
 | ---  | --- |
 |Question | How do we validate that the whole system works, once we have built our Docker image? |
-| | *Enter your response here...* |
+| | *Le scripte validate.sh nous permet de valider le comportement de l'application.* |
 
 
 ## Constraints
